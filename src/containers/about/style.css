@@ -1,0 +1,113 @@
+@import url("https://fonts.googl eapis.com/css?family=Open+Sans&display=swap");
+
+* {
+    /* overflow: hidden; */
+    padding: 0%;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+    color: white;
+}
+
+body{
+    background-image: url("../../assets/photo/PC1.png");
+    background-attachment: fixed, scroll;
+    background-repeat: no-repeat, repeat-y;
+}
+
+body::-webkit-scrollbar {
+    width: 10px; /* set the width of the scrollbar */
+  }
+  
+body::-webkit-scrollbar-track {
+background-color: black; /* set the background color of the track */
+}
+
+body::-webkit-scrollbar-thumb {
+background-color: #888; /* set the color of the thumb */
+border-radius: 5px; /* round the edges of the thumb */
+}
+
+body::-webkit-scrollbar-thumb:hover {
+background-color: #555; /* set the color of the thumb on hover */
+}
+
+#menu{
+    background-color: black;
+    border-radius: 40px;
+    text-align: center;
+    padding: 10px;
+}
+
+#menu a{
+    padding: 5px;
+    text-decoration: none;
+    font-size: 25px;
+}
+
+#menu #contatc{
+    color: red;
+    border-radius: 40px;
+}
+
+#name #text{
+    margin-top: 10%;
+    padding: 0% 10%;
+}
+
+#name #text h1{
+    color: red;
+    font-size: 300%;
+} 
+
+#name #text p{
+    /*display: inline-block;
+    vertical-align: top;*/
+    width: 70%;
+    margin-right: 15%;
+    font-size: 175%;
+}
+
+#name input{
+    font-size: 25px;
+    background-color: red;
+    color: white;
+    border-radius: 50px;
+    width: 10%;
+}
+
+#name img{
+    position: absolute;
+    left: 50%;
+    width: 50%;
+    height: 430px;
+}
+
+#experience{
+    background-color: black;
+    border-radius: 5%;
+    padding: 2% 10%;
+}
+
+#experience #contatc{
+    color: red;
+    font-size: 200%; 
+}
+
+#experience p{
+    /*display: inline-block;
+    vertical-align: top;*/
+    width: 50%;
+    margin-right: 15%;
+    font-size: 175%;
+}
+
+#experience h1{
+    color: red;
+    font-size: 300%;
+} 
+
+#social-media{
+    text-align: center;
+    font-size: 150%;
+    padding: 5% 10%;
+}
