@@ -1,0 +1,21 @@
+/*#social-media{
+    border-top: 1px solid #333;
+    bottom: 0;
+    left: 0;
+    height: 40px;
+    position: fixed;
+    width: 100%;
+    text-align: center;
+
+}
+
+function formatDate(date, format) {
+    const map = {
+        mm: date.getMonth() + 1,
+        dd: date.getDate(),
+        aa: date.getFullYear().toString().slice(-2),
+        aaaa: date.getFullYear()
+    }
+
+    return format.replace(/mm|dd|aa|aaaa/gi, matched => map[matched])
+}*/
