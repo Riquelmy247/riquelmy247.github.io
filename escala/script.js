@@ -5,9 +5,13 @@ const availablePeople = {
     "Talita": ["DataShow", "Insta"],
     "Yasmim": ["DataShow", "Insta", "Gimbal"],
     "Sara": ["DataShow", "Insta", "Gimbal"],
-    "Ana Clara": ["Câmera", "DataShow"],
+    // "Ana Clara": ["Câmera", "DataShow"],
     "João Pedro": ["DataShow"],
-    "Maria Luiza": ["Insta", "Gimbal"]
+    "Maria Luiza": ["Insta", "Gimbal"],
+    "Leandra": ["Insta", "Câmera"],
+    "Matheus H.": ["Câmera"],
+    "Matheus O.": ["DataShow"],
+    "Isabela": ["Insta", "Gimbal"]
 };
 
 const roles = ["Câmera", "DataShow", "Gimbal", "Insta"];
@@ -94,16 +98,17 @@ function generateSchedules(days, scalesPerDay, restDays) {
                 !usedPeopleToday[person] &&
                 (!restrictedPeople[person] || !restrictedPeople[person].includes(day))
             );
-
+        
             if (availablePeopleForRest.length > 0) {
-                const selectedPerson = availablePeopleForRest[Math.floor(Math.random() * availablePeopleForRest.length)];
-                scheduleOutput += `<p>Pessoa descansando: ${selectedPerson}</p>`;
-                if (!restrictedPeople[selectedPerson]) {
-                    restrictedPeople[selectedPerson] = [];
-                }
-                restrictedPeople[selectedPerson].push(day);
+                scheduleOutput += `<p>Pessoas descansando: ${availablePeopleForRest.join(', ')}</p>`;
+                availablePeopleForRest.forEach(selectedPerson => {
+                    if (!restrictedPeople[selectedPerson]) {
+                        restrictedPeople[selectedPerson] = [];
+                    }
+                    restrictedPeople[selectedPerson].push(day);
+                });
             }
-        }
+        }        
 
         peopleResting[day + 1] = Object.keys(usedPeopleToday);
     }

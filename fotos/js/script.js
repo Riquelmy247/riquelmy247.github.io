@@ -3,12 +3,12 @@ document.addEventListener("DOMContentLoaded", function() {
     
     function loadFolders() {
         const folders = [
-            { title: 'Culto de Santa Ceia', date: '13/10/2024 | Noite', path: 'fotos/13-10 NOITE' },
-            { title: 'Culto de Santa Ceia', date: '13/10/2024 | Manhã', path: 'fotos/13-10 MANHÃ' },
-            { title: 'Culto de Primícias', date: '06/10/2024 | Noite', path: 'fotos/06-10 NOITE' },
-            { title: 'Culto de Primícias', date: '06/10/2024 | Manhã', path: 'fotos/06-10 MANHÃ' },
-            { title: 'Culto da Família', date: '29/09/2024 | Noite', path: 'fotos/29-09 NOITE' },
-            { title: 'Culto da Família', date: '29/09/2024 | Manhã', path: 'fotos/29-09 MANHÃ' }
+            { title: 'Série - O Amor Amou', date: '04/05/2025 | Noite', path: 'fotos/04-05 NOITE' },
+            { title: 'Série - O Amor Amou', date: '04/05/2025 | Manhã', path: 'fotos/04-05 MANHÃ' },
+            { title: 'Série - O Amor Amou', date: '27/04/2025 | Noite', path: 'fotos/27-04 NOITE' },
+            { title: 'Série - O Amor Amou', date: '27/04/2025 | Manhã', path: 'fotos/27-04 MANHÃ' },
+            { title: 'Série - Ainda Há Um Lugar Na Mesa', date: '20/04/2025 | Noite', path: 'fotos/20-04 NOITE' },
+            { title: 'Série - Ainda Há Um Lugar Na Mesa', date: '20/04/2025 | Manhã', path: 'fotos/20-04 MANHÃ' }
         ];
         
         folders.forEach(folder => {
