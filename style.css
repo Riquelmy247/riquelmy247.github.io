@@ -118,32 +118,32 @@ p {
 }
 
 .java {
-    width: 90%;
+    width: 85%;
     background-color: #ff0000;
 }
 
 .shell,
 .banco-dados {
-    width: 85%;
+    width: 80%;
     background-color: #ff0000;
 }
 
 .python,
 .c,
 .php {
-    width: 80%;
+    width: 70%;
     background-color: #ff0000;
 }
 
 .html-css,
 .javascript {
-    width: 70%;
+    width: 50%;
     background-color: #ff0000;
 }
 
 .react,
 .node {
-    width: 50%;
+    width: 20%;
     background-color: #ff0000;
 }
 

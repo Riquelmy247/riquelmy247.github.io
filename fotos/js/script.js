@@ -3,6 +3,8 @@ document.addEventListener("DOMContentLoaded", function() {
     
     function loadFolders() {
         const folders = [
+            { title: 'Série - O Amor Amou', date: '11/05/2025 | Noite', path: 'fotos/11-05 NOITE' },
+            { title: 'Série - O Amor Amou', date: '11/05/2025 | Noite', path: 'fotos/11-05 MANHÃ' },
             { title: 'Série - O Amor Amou', date: '04/05/2025 | Noite', path: 'fotos/04-05 NOITE' },
             { title: 'Série - O Amor Amou', date: '04/05/2025 | Manhã', path: 'fotos/04-05 MANHÃ' },
             { title: 'Série - O Amor Amou', date: '27/04/2025 | Noite', path: 'fotos/27-04 NOITE' },

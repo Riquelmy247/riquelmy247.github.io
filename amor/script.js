@@ -1,7 +1,5 @@
-// Data do casamento (13/03/2027)
 const weddingDate = new Date('2027-03-13T00:00:00');
 
-// Contagem regressiva
 function updateCountdown() {
     const now = new Date();
     const difference = weddingDate - now;
@@ -22,11 +20,9 @@ function updateCountdown() {
     }
 }
 
-// Atualiza a cada segundo
 const countdownInterval = setInterval(updateCountdown, 1000);
-updateCountdown(); // Atualiza imediatamente
+updateCountdown();
 
-// Carrossel de fotos
 const images = document.querySelectorAll('.carousel-image');
 let currentImageIndex = 0;
 
@@ -45,9 +41,4 @@ function prevImage() {
     showImage(currentImageIndex);
 }
 
-// Adiciona eventos aos botões
-// document.querySelector('.carousel-button.next').addEventListener('click', nextImage);
-// document.querySelector('.carousel-button.prev').addEventListener('click', prevImage);
-
-// Troca automática de imagens a cada 5 segundos
 setInterval(nextImage, 2000); 
