@@ -10,20 +10,37 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     function loadPhotos() {
-        const photoLimit = 1000;
-        const photos = [];
-        
-        for (let i = 1; i <= photoLimit; i++) {
+        let i = 1;
+        let failCount = 0;
+        const maxFails = 2;
+
+        function tryNextPhoto() {
             const photoPath = `${folder}/foto${i}.jpg`;
             checkPhotoExists(photoPath)
                 .then(exists => {
                     if (exists) {
-                        photos.push({ name: `foto${i}.jpg`, path: photoPath });
+                        failCount = 0;
                         addPhotoToGallery({ name: `foto${i}.jpg`, path: photoPath });
+                    } else {
+                        failCount++;
+                    }
+
+                    i++;
+                    if (failCount < maxFails) {
+                        tryNextPhoto();
                     }
                 })
-                .catch(err => console.error(err));
+                .catch(err => {
+                    console.error(err);
+                    failCount++;
+                    i++;
+                    if (failCount < maxFails) {
+                        tryNextPhoto();
+                    }
+                });
         }
+
+        tryNextPhoto();
     }
 
     function checkPhotoExists(photoPath) {
