@@ -3,6 +3,8 @@ document.addEventListener("DOMContentLoaded", function() {
     
     function loadFolders() {
         const folders = [
+            { title: 'Série - Ainda Há Lugar Na Mesa', date: '25/05/2025 | Noite', path: 'fotos/25-05 NOITE' },
+            { title: 'Série - Ainda Há Lugar Na Mesa', date: '25/05/2025 | Manhã', path: 'fotos/25-05 MANHÃ' },
             { title: 'Série - Ainda Há Lugar Na Mesa', date: '18/05/2025 | Noite', path: 'fotos/18-05 NOITE' },
             { title: 'Série - Ainda Há Lugar Na Mesa', date: '18/05/2025 | Manhã', path: 'fotos/18-05 MANHÃ' },
             { title: 'Série - Ainda Há Lugar Na Mesa', date: '11/05/2025 | Noite', path: 'fotos/11-05 NOITE' },
