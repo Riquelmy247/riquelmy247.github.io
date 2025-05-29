@@ -2,16 +2,17 @@ const availablePeople = {
     "Riquelmy": ["Câmera", "DataShow", "Gimbal"],
     "Annaylle": ["Insta", "Gimbal"],
     "Isaque": ["Câmera", "DataShow"],
-    "Talita": ["DataShow", "Insta"],
-    "Yasmim": ["DataShow", "Insta", "Gimbal"],
-    "Sara": ["DataShow", "Insta", "Gimbal"],
+    "Talita": ["Insta"],
+    // "Yasmim": ["DataShow", "Insta", "Gimbal"],
+    "Sara": ["Insta", "Gimbal"],
     // "Ana Clara": ["Câmera", "DataShow"],
     "João Pedro": ["DataShow"],
     "Maria Luiza": ["Insta", "Gimbal"],
     "Leandra": ["Insta", "Câmera"],
+    "Davi": ["Gimbal", "Câmera"],
     "Matheus H.": ["Câmera"],
     "Matheus O.": ["DataShow"],
-    "Isabela": ["Insta", "Gimbal"]
+    "Isabella": ["Insta", "Gimbal"]
 };
 
 const roles = ["Câmera", "DataShow", "Gimbal", "Insta"];
@@ -19,13 +20,13 @@ const roles = ["Câmera", "DataShow", "Gimbal", "Insta"];
 document.getElementById('scheduleForm').addEventListener('submit', function (event) {
     event.preventDefault();
 
-    const days = document.getElementById('days').value;
-    const scalesPerDay = document.getElementById('scalesPerDay').value;
-    const restDaysInput = document.getElementById('restDays').value;
+    const dayList = document.getElementById('dayList').value.split(',').map(d => d.trim());
+    const scalesPerDay = parseInt(document.getElementById('scalesPerDay').value);
+    // const restDaysInput = document.getElementById('restDays').value;
 
-    const restDays = restDaysInput ? parseRestDays(restDaysInput) : {};
+    // const restDays = restDaysInput ? parseRestDays(restDaysInput) : {};
 
-    const output = generateSchedules(days, scalesPerDay, restDays);
+    const output = generateSchedules(dayList, scalesPerDay);
     document.getElementById('output').innerHTML = output;
 });
 
@@ -35,50 +36,63 @@ function parseRestDays(input) {
 
     pairs.forEach(pair => {
         const [day, people] = pair.split(':');
-        restDays[day] = people.split(',');
+        restDays[day.trim()] = people.split(',').map(p => p.trim());
     });
 
     return restDays;
 }
 
-function generateSchedules(days, scalesPerDay, restDays) {
+function generateSchedules(dayList, scalesPerDay, restDays) {
     let scheduleOutput = "";
-    let peopleResting = {};
-    let restrictedPeople = {};
+    let participationCount = {};
 
-    for (let day = 1; day <= days; day++) {
-        scheduleOutput += `<h2>Dia ${day}</h2>`;
+    Object.keys(availablePeople).forEach(person => participationCount[person] = 0);
+
+    for (const day of dayList) {
+        scheduleOutput += `<h2>📅 Dia ${day}</h2>`;
         let usedPeopleToday = {};
-        let peopleToRest = restDays[day] || [];
+        // let peopleToRest = restDays[day] || [];
 
         for (let scale = 1; scale <= scalesPerDay; scale++) {
-            scheduleOutput += `<h3>Escala ${scale}</h3>`;
+            let scaleLabel;
+            if (scalesPerDay === 2) {
+                scaleLabel = scale === 1 ? "Escala Mídia - Manhã" : "Escala Mídia - Noite";
+            } else {
+                scaleLabel = `Escala ${scale}`;
+            }
+
+            scheduleOutput += `<h3>${scaleLabel}</h3>`;
             let assignedRoles = {};
 
             roles.forEach(role => {
-                const availablePeopleForRole = Object.keys(availablePeople).filter(person =>
+                const candidates = Object.keys(availablePeople).filter(person =>
                     availablePeople[person].includes(role) &&
-                    !usedPeopleToday[person] &&
-                    !peopleToRest.includes(person) &&
-                    (!restrictedPeople[person] || !restrictedPeople[person].includes(`${day}:${scale}`))
+                    !usedPeopleToday[person] 
+                    // &&
+                    // !peopleToRest.includes(person)
                 );
 
-                if (availablePeopleForRole.length > 0) {
-                    const selectedPerson = availablePeopleForRole[Math.floor(Math.random() * availablePeopleForRole.length)];
+                candidates.sort((a, b) => participationCount[a] - participationCount[b]);
+
+                if (candidates.length > 0) {
+                    const topCandidates = candidates.filter(p => participationCount[p] === participationCount[candidates[0]]);
+                    const selectedPerson = topCandidates[Math.floor(Math.random() * topCandidates.length)];
                     assignedRoles[role] = selectedPerson;
                     usedPeopleToday[selectedPerson] = true;
-                    if (!restrictedPeople[selectedPerson]) {
-                        restrictedPeople[selectedPerson] = [];
-                    }
-                    restrictedPeople[selectedPerson].push(`${day}:${scale}`);
+                    participationCount[selectedPerson]++;
                 } else {
-                    const alreadyUsedPeople = Object.keys(usedPeopleToday).filter(person =>
+                    const fallback = Object.keys(availablePeople).filter(person =>
                         availablePeople[person].includes(role)
+                        //  &&
+                        // !peopleToRest.includes(person)
                     );
 
-                    if (alreadyUsedPeople.length > 0) {
-                        const selectedPerson = alreadyUsedPeople[Math.floor(Math.random() * alreadyUsedPeople.length)];
+                    if (fallback.length > 0) {
+                        fallback.sort((a, b) => participationCount[a] - participationCount[b]);
+                        const selectedPerson = fallback[0];
                         assignedRoles[role] = selectedPerson;
+                        usedPeopleToday[selectedPerson] = true;
+                        participationCount[selectedPerson]++;
                     } else {
                         assignedRoles[role] = "N/A";
                     }
@@ -88,29 +102,16 @@ function generateSchedules(days, scalesPerDay, restDays) {
             scheduleOutput += generateScheduleHtml(assignedRoles);
         }
 
-        if (peopleToRest.length > 0) {
-            scheduleOutput += `<p>Pessoas descansando: ${peopleToRest.join(', ')}</p>`;
-            peopleToRest.forEach(person => {
-                usedPeopleToday[person] = true;
-            });
-        } else {
-            let availablePeopleForRest = Object.keys(availablePeople).filter(person =>
-                !usedPeopleToday[person] &&
-                (!restrictedPeople[person] || !restrictedPeople[person].includes(day))
+        // if (peopleToRest.length > 0) {
+        //     scheduleOutput += `<p><strong>Descansando:</strong> ${peopleToRest.join(', ')}</p>`;
+        // } else {
+            const availableForRest = Object.keys(availablePeople).filter(person =>
+                !usedPeopleToday[person]
             );
-        
-            if (availablePeopleForRest.length > 0) {
-                scheduleOutput += `<p>Pessoas descansando: ${availablePeopleForRest.join(', ')}</p>`;
-                availablePeopleForRest.forEach(selectedPerson => {
-                    if (!restrictedPeople[selectedPerson]) {
-                        restrictedPeople[selectedPerson] = [];
-                    }
-                    restrictedPeople[selectedPerson].push(day);
-                });
+            if (availableForRest.length > 0) {
+                scheduleOutput += `<p><strong>Descansando:</strong> ${availableForRest.join(', ')}</p>`;
             }
-        }        
-
-        peopleResting[day + 1] = Object.keys(usedPeopleToday);
+        // }
     }
 
     return scheduleOutput;
@@ -119,10 +120,10 @@ function generateSchedules(days, scalesPerDay, restDays) {
 function generateScheduleHtml(assignedRoles) {
     return `
         <ul>
-            <li>Câmera: ${assignedRoles["Câmera"]}</li>
-            <li>DataShow: ${assignedRoles["DataShow"]}</li>
-            <li>Gimbal: ${assignedRoles["Gimbal"]}</li>
-            <li>Insta: ${assignedRoles["Insta"]}</li>
+            <li>🎥 Câmera: ${assignedRoles["Câmera"]}</li>
+            <li>💻 DataShow: ${assignedRoles["DataShow"]}</li>
+            <li>📸 Insta: ${assignedRoles["Insta"]}</li>
+            <li>🤳 Gimbal: ${assignedRoles["Gimbal"]}</li>
         </ul>
     `;
 }
