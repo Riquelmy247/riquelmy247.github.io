@@ -3,6 +3,8 @@ document.addEventListener("DOMContentLoaded", function() {
     
     function loadFolders() {
         const folders = [
+            { title: 'Série - A Igreja de Cristo', date: '29/06/2025 | Noite', path: 'fotos/29-06 NOITE' },
+            { title: 'Série - A Igreja de Cristo', date: '29/06/2025 | Manhã', path: 'fotos/29-06 MANHÃ' },
             { title: 'Campanha - Fé e Milagre', date: '25/06/2025 | Quarta', path: 'fotos/25-06 QUARTA' },
             { title: 'Série - A Igreja de Cristo', date: '22/06/2025 | Noite', path: 'fotos/22-06 NOITE' },
             { title: 'Série - A Igreja de Cristo', date: '22/06/2025 | Manhã', path: 'fotos/22-06 MANHÃ' },
