@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", function() {
             { title: 'Campanha - Fé e Milagre', date: '25/06/2025 | Quarta', path: 'fotos/25-06 QUARTA' },
             { title: 'Série - A Igreja de Cristo', date: '22/06/2025 | Noite', path: 'fotos/22-06 NOITE' },
             { title: 'Série - A Igreja de Cristo', date: '22/06/2025 | Manhã', path: 'fotos/22-06 MANHÃ' },
+            { title: 'Campanha - Fé e Milagre', date: '18/06/2025 | Quarta', path: 'fotos/18-06 QUARTA' },
             { title: 'Série - A Igreja de Cristo', date: '15/06/2025 | Noite', path: 'fotos/15-06 NOITE' },
             { title: 'Série - A Igreja de Cristo', date: '15/06/2025 | Manhã', path: 'fotos/15-06 MANHÃ' },
             { title: 'Série - A Igreja de Cristo', date: '08/06/2025 | Noite', path: 'fotos/08-06 NOITE' },
