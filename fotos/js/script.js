@@ -3,6 +3,9 @@ document.addEventListener("DOMContentLoaded", function() {
     
     function loadFolders() {
         const folders = [
+            { title: 'Série - Prosseguindo Para o Alvo', date: '06/07/2025 | Noite', path: 'fotos/06-07 NOITE' },
+            { title: 'Série - Prosseguindo Para o Alvo', date: '06/07/2025 | Manhã', path: 'fotos/06-07 MANHÃ' },
+            { title: 'Campanha - Fé e Milagre', date: '02/07/2025 | Quarta', path: 'fotos/02-07 QUARTA' },
             { title: 'Série - A Igreja de Cristo', date: '29/06/2025 | Noite', path: 'fotos/29-06 NOITE' },
             { title: 'Série - A Igreja de Cristo', date: '29/06/2025 | Manhã', path: 'fotos/29-06 MANHÃ' },
             { title: 'Campanha - Fé e Milagre', date: '25/06/2025 | Quarta', path: 'fotos/25-06 QUARTA' },
