@@ -2,16 +2,16 @@ const availablePeople = {
     "Riquelmy": ["Câmera", "DataShow", "Gimbal"],
     "Annaylle": ["Insta", "Gimbal"],
     "Isaque": ["Câmera", "DataShow"],
-    "Talita": ["Insta"],
+    // "Talita": ["Insta"],
     // "Yasmim": ["DataShow", "Insta", "Gimbal"],
     "Sara": ["Insta", "Gimbal"],
     // "Ana Clara": ["Câmera", "DataShow"],
-    "João Pedro": ["DataShow"],
+    "João Pedro": ["DataShow", "Câmera"],
     "Maria Luiza": ["Insta", "Gimbal"],
     "Leandra": ["Insta", "Câmera"],
     "Davi": ["Gimbal", "Câmera"],
-    "Matheus H.": ["Câmera"],
-    "Matheus O.": ["DataShow"],
+    "Matheus H.": ["Câmera", "DataShow"],
+    "Matheus O.": ["DataShow", "Gimbal"],
     "Isabella": ["Insta", "Gimbal"]
 };
 
